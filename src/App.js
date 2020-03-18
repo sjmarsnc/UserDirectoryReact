@@ -9,12 +9,9 @@ import './App.css';
 function App() {
   return ( 
     <>
-      <Navbar /> 
-      <Wrapper>
          <Header /> 
          <SearchBar /> 
          <EmployeeTable />
-      </Wrapper>
     </>
   );
 }
