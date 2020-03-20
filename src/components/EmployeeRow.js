@@ -1,10 +1,16 @@
 import React from 'react';
 
-const EmployeeRow = () => {
+const EmployeeRow = ( props ) => {
+    console.log("EmployeeRow: ", props);  
+     
     return (
-        <div>
-            <h1> Employee row</h1>
-        </div>
+        <tr>
+            <td><img src={props.thumbnail} alt = "picture" /></td>
+            <td>{props.first} {props.last}</td>
+            <td>{props.phone}</td>
+            <td>{props.email}</td>
+            <td>{props.dob}</td>
+        </tr>
     )
 };
 

@@ -12,16 +12,18 @@ const styles = {
       margin: "auto 0px",
       top: 0, 
       borderBottom: "5px solid red"  
+    },
+    h5: {
+        textSize: "smaller"
     }
   };
 
-
 const Header = () => {
     return (
-      <div class="container w-100">
-        <div class="jumbotron text-center" style = {styles.heading} >
+      <div className="container w-100">
+        <div className="jumbotron text-center" style = {styles.heading} >
             <h1>Employee Directory</h1>
-            <h5>Click on carets to sort by column or use the search box to narrow your results</h5>
+            <h5 style = {styles.h5}>Click on carets to sort by column or use the search box to narrow your results</h5>
         </div>
       </div>
     )
