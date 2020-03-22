@@ -4,6 +4,7 @@ const styles = {
   searchBar: {
     height: "5rem",
     marginLeft: "0px",
+    marginRight: "0px",
     backgroundColor: "#eeeeee"
   },
   search: {}
