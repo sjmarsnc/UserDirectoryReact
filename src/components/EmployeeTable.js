@@ -13,7 +13,7 @@ class EmployeeTable extends Component {
   };
 
   getEmployees() {
-    axios.get("https://randomuser.me/api/?results=8&nat=us").then(res => {
+    axios.get("https://randomuser.me/api/?results=20&nat=us").then(res => {
       console.log("Results in getEmployees: ", res.data.results);
       this.setState({
         empList: res.data.results,
