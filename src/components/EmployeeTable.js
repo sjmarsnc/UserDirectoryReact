@@ -10,13 +10,15 @@ class EmployeeTable extends Component {
     displayList: [],
     sortKey: "",
     search: "",
-    sortIcon: "fa fa-sort"
+    sortNameIcon: "fa fa-sort",
+    sortDobIcon: "fa fa-sort"
   };
 
   getEmployees() {
     axios.get("https://randomuser.me/api/?results=20&nat=us").then(res => {
       res.data.results.forEach(emp => {
         emp.fullName = emp.name.first + " " + emp.name.last;
+        emp.birthdate = emp.dob.date.substr(0, 10);
       });
       this.setState({
         empList: res.data.results,
@@ -38,17 +40,43 @@ class EmployeeTable extends Component {
     this.setState({ displayList: newList });
   };
 
-  handleSortChange = event => {
-    switch (this.state.sortIcon) {
-      case "fa fa-sort":
-      case "fa fa-sort-down":
-        this.setState({ sortIcon: "fa fa-sort-up" });
-        this.sortEmpList("asc");
-        break;
-      case "fa fa-sort-up":
-        this.setState({ sortIcon: "fa fa-sort-down" });
-        this.sortEmpList("desc");
-        break;
+  handleSortChange = sortField => {
+    if (sortField === "name") {
+      switch (this.state.sortNameIcon) {
+        case "fa fa-sort":
+        case "fa fa-sort-down":
+          this.setState({
+            sortNameIcon: "fa fa-sort-up",
+            sortDobIcon: "fa fa-sort"
+          });
+          this.sortEmpList("asc");
+          break;
+        case "fa fa-sort-up":
+          this.setState({
+            sortNameIcon: "fa fa-sort-down",
+            sortDobIcon: "fa fa-sort"
+          });
+          this.sortEmpList("desc");
+          break;
+      }
+    } else {
+      switch (this.state.sortDobIcon) {
+        case "fa fa-sort":
+        case "fa fa-sort-down":
+          this.setState({
+            sortDobIcon: "fa fa-sort-up",
+            sortNameIcon: "fa fa-sort"
+          });
+          this.sortDobList("asc");
+          break;
+        case "fa fa-sort-up":
+          this.setState({
+            sortDobIcon: "fa fa-sort-down",
+            sortNameIcon: "fa fa-sort"
+          });
+          this.sortDobList("desc");
+          break;
+      }
     }
   };
 
@@ -62,6 +90,20 @@ class EmployeeTable extends Component {
     } else {
       sortedList = this.state.empList.sort((a, b) =>
         b.fullName.localeCompare(a.fullName)
+      );
+    }
+    this.setState({ displayList: sortedList });
+  };
+
+  sortDobList = direction => {
+    let sortedList = [];
+    if (direction === "asc") {
+      sortedList = this.state.empList.sort((a, b) =>
+        a.birthdate.localeCompare(b.birthdate)
+      );
+    } else {
+      sortedList = this.state.empList.sort((a, b) =>
+        b.birthdate.localeCompare(a.birthdate)
       );
     }
     this.setState({ displayList: sortedList });
@@ -83,13 +125,23 @@ class EmployeeTable extends Component {
                   <th>
                     Name &nbsp;&nbsp; &nbsp;{" "}
                     <i
-                      className={this.state.sortIcon}
-                      onClick={this.handleSortChange}
+                      sortField="name"
+                      className={this.state.sortNameIcon}
+                      onClick={() => this.handleSortChange("name")}
+                      sort={this.sortEmpList}
                     />
                   </th>
                   <th>Phone</th>
                   <th>Email Address</th>
-                  <th>DOB</th>
+                  <th>
+                    DOB &nbsp;&nbsp; &nbsp;{" "}
+                    <i
+                      sortField="dob"
+                      className={this.state.sortDobIcon}
+                      onClick={() => this.handleSortChange("dob")}
+                      sort={this.handleDobSort}
+                    />
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -99,7 +151,7 @@ class EmployeeTable extends Component {
                     name={employee.fullName}
                     phone={employee.phone}
                     email={employee.email}
-                    dob={employee.dob.date.substr(0, 10)}
+                    dob={employee.birthdate}
                     id={employee.id.value}
                   />
                 ))}
