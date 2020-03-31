@@ -2,7 +2,7 @@
 
 ## React application to provide a user directory
 
-See the application deployed on [Heroku](https://whispering-dawn-54949.herokuapp.com/)
+See the application deployed on [Heroku](https://secret-sea-93788.herokuapp.com/)
 
 The purpose of the app is to provide a user directory. You can filter which users are shown by typing a string in the search field, with each character typed the list of names displayed changes to show you just names that match the string.
 
