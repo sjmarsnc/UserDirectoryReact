@@ -12,4 +12,4 @@ You can sort the employees by their first name by clicking on the sort icon in t
 
 ## Implementation details
 
-The list of users for the sample application are obtained dynamically from a public API [here](https://randomuser.me/api/?results=20&nat=us). You can easily change the query to return more or fewer users by modifying the value in the results parameter in the call.
+The list of users for the sample application are obtained dynamically from a public API [here](https://randomuser.me/api/?results=20&nat=us). You can easily change the query to return more or fewer users by modifying the value in the results parameter in the call.  To use your own data, modify the function getEmployees in EmployeeTable.js.  
