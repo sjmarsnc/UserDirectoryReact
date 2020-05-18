@@ -2,7 +2,7 @@
 
 This application uses React.js to display an employee directory.   
 
-![See application image](./public/application.png)
+![See application image](./public/Application.png)
  
 This application is deployed on [Heroku](https://secret-sea-93788.herokuapp.com/)
 
